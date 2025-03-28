@@ -1,1 +1,50 @@
-<p>product-list works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Productos ({{ (products$ | async)?.length || 0 }})</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Código</th>
+              <th>Descuento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products$ | async">
+              <td>{{ product.name }}</td>
+              <td>${{ product.price }}</td>
+              <td>{{ product.code }}</td>
+              <td>
+                <span class="badge" 
+                  [ngClass]="product.discount ? 'badge-success' : 'badge-secondary'">
+                  {{ product.discount ? 'Sí' : 'No' }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <div class="col-md-6">
+        <h2>Productos con Descuento ({{ (discountProducts$ | async)?.length || 0 }})</h2>
+        <table class="table table-striped table-success">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Código</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of discountProducts$ | async">
+              <td>{{ product.name }}</td>
+              <td>${{ product.price }}</td>
+              <td>{{ product.code }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

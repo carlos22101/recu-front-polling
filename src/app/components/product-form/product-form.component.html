@@ -1,1 +1,64 @@
-<p>product-form works!</p>
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <input 
+        id="name"
+        type="text" 
+        formControlName="name" 
+        class="form-control" 
+        placeholder="Ingrese el nombre del producto"
+      >
+      <div *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched" class="text-danger">
+        El nombre es requerido
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="price">Precio</label>
+      <input 
+        id="price"
+        type="number" 
+        formControlName="price" 
+        class="form-control" 
+        placeholder="Ingrese el precio"
+      >
+      <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched" class="text-danger">
+        El precio debe ser mayor o igual a 0
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="code">Código</label>
+      <input 
+        id="code"
+        type="text" 
+        formControlName="code" 
+        class="form-control" 
+        placeholder="Ingrese el código del producto"
+      >
+      <div *ngIf="productForm.get('code')?.invalid && productForm.get('code')?.touched" class="text-danger">
+        El código es requerido
+      </div>
+    </div>
+  
+    <div class="form-group form-check">
+      <input 
+        id="discount"
+        type="checkbox" 
+        formControlName="discount" 
+        class="form-check-input"
+      >
+      <label class="form-check-label" for="discount">
+        Producto con descuento
+      </label>
+    </div>
+  
+    <button 
+      type="submit" 
+      class="btn btn-primary" 
+      [disabled]="productForm.invalid"
+    >
+      Agregar Producto
+    </button>
+  </form>

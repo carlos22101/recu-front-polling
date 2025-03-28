@@ -1,12 +1,24 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ProductFormComponent } from './components/product-form/product-form.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductService } from './services/product.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  standalone: true,
+  imports: [
+    CommonModule, 
+    ReactiveFormsModule, 
+    HttpClientModule,
+    ProductFormComponent, 
+    ProductListComponent
+  ],
+  providers: [ProductService]
 })
 export class AppComponent {
-  title = 'recu-front';
+  title = 'Gestión de Productos';
 }
